@@ -1,0 +1,26 @@
+# Core dependencies
+numpy==1.26.4
+pandas==2.2.2
+tqdm==4.66.5
+matplotlib==3.9.2
+
+# PyTorch & related
+torch==2.3.1
+torchvision==0.18.1
+torchaudio==2.3.1
+
+# Machine learning utilities
+scikit-learn==1.5.2
+
+# Data handling
+jsonschema==4.23.0
+
+# Project organization (optional but common)
+joblib==1.4.2
+
+# Internal imports (local modules)
+# src.data_utils
+# src.model_arch
+# src.train_model
+# src.predict.task1_predict
+# src.predict.task2_predict
