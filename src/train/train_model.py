@@ -38,8 +38,8 @@ def train_one_epoch(model, dl, opt, loss_fn):
 
 
 def train_bagged_models(
-    data_path="data/dataset0.json.gz",
-    label_path="data/data.info.labelled",
+    data_path="data/dataset0_test.json.gz",
+    label_path="data/data.info_test.labelled",
     save_dir="models",
     num_bags=5,
     num_folds=10,
@@ -50,13 +50,13 @@ def train_bagged_models(
     # 0️⃣ Check dataset existence
     if not os.path.exists(data_path):
         raise FileNotFoundError(
-            " dataset0.json.gz is not found.\n"
-            "Please download the file from Canvas and upload it into the 'data' folder."
+            "dataset0_test.json.gz is not found.\n"
+            "Please download the file from the data folder in the repository."
         )
     if not os.path.exists(label_path):
         raise FileNotFoundError(
-            " data.info.labelled is not found.\n"
-            "Please download the label file from Canvas and place it in the 'data' folder."
+            "data.info_test.labelled is not found.\n"
+            "Please download the file from the data folder in the repository."
         )
 
     # 1️⃣ Create save directory
