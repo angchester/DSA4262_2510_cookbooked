@@ -10,8 +10,8 @@ def main():
 
     if args.mode == "train":
         train_bagged_models(
-            data_path="data/dataset0.json.gz",
-            label_path="data/data.info.labelled",
+            data_path="data/dataset0_test.json.gz",
+            label_path="data/data.info_test.labelled",
             save_dir="models",
             num_bags=args.num_bags,
         )
