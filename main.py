@@ -1,24 +1,28 @@
-import argparse
-from src.train.train_model import train_bagged_models
-from src.predict.task1_predict import run_task1_prediction
+import os
+import sys
+from src.prediction import run_prediction
 
 def main():
-    p = argparse.ArgumentParser(description="RNA Model Project")
-    p.add_argument("mode", choices=["train", "predict"])
-    p.add_argument("--num_bags", type=int, default=5)
-    args = p.parse_args()
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <filename.json or filename.json.gz>")
+        sys.exit(1)
 
-    if args.mode == "train":
-        train_bagged_models(
-            data_path="data/dataset0_test.json.gz",
-            label_path="data/data.info_test.labelled",
-            save_dir="models",
-            num_bags=args.num_bags,
-        )
-    elif args.mode == "predict":
-        run_task1_prediction(model_dir="models", data_dir="data", num_bags=args.num_bags)
-    else:
-        print("Invalid choice, please choose train or predict")
-        
+    input_file = sys.argv[1]
+    data_dir = "data"
+    model_dir = "models"
+    num_bags = 5
+
+    file_path = os.path.join(data_dir, input_file)
+    if not os.path.exists(file_path):
+        print(f"Error: {input_file} not found in '{data_dir}' folder.")
+        sys.exit(1)
+
+    run_prediction(
+        input_file=input_file,
+        model_dir=model_dir,
+        data_dir=data_dir,
+        num_bags=num_bags
+    )
+
 if __name__ == "__main__":
     main()
