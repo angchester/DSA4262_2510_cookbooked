@@ -11,7 +11,7 @@ DSA4262_2510_cookbooked/
 ├── requirements.txt               # Dependencies
 │
 ├── data/                          # Input datasets 
-│   └── testdata.json.gz      # Test data to try out
+│   └── testdata.json.gz           # Test data to try out
 │        
 ├── models/                        # Trained bagged models (.pt)
 │   ├── bag1_finalmodel.pt
@@ -29,8 +29,8 @@ DSA4262_2510_cookbooked/
 # Setting up
 Do follow these steps to ensure that the model can run smoothly
 **Machine Setup**
-1) If you are running on AWS instance, start a new instance. We recommend to use a machine at least R5.2XLARGE to ensure that model have enough memory to run.
-2) If you are running locally, ensure that you have Python installed.
+1) If you are running on AWS instance, start a new instance. We recommend to use a machine at least M4.4LARGE with at least 50GB SSD.
+2) If you are running locally, ensure that you have Python Version $\geq$ 3.10 installed.
 
 **_Cloning Repository_**
 
@@ -77,6 +77,8 @@ python3 main.py testdata.json.gz
 ```
 **Note** that our model is an ensemble of 5 bagged models, so the prediction script will run 5 inference rounds (one per bag) before averaging the results. This process may take some time to complete, depending on your hardware performance and the size of the data. Please allow the script to finish without interruption.
 
+Upon a successful prediction run, the results will be stored in `/predictions` as a `.csv` file.
+
 **_Predicting on SGNex data_**
 
 To access the SGNex S3 bucket, run the following command.
@@ -92,7 +94,7 @@ aws s3 cp --no-sign-request \
 s3://sg-nex-data/data/processed_data/m6Anet/<FOLDER_NAME>/data.json \
 data/<FOLDER_NAME>.json
 ```
-Replace `<FOLDER_NAME>` with the specific dataset folder name. The first path iis the remote S3 location while the second path is to save the data into `/data` folder.
+Replace `<FOLDER_NAME>` with the specific dataset folder name. The first path is the remote S3 location while the second path is to save the data into `/data` folder.
 
 **_Example of predicting SGNex data_**
 
