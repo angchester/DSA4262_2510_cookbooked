@@ -41,7 +41,7 @@ To clone the repository to your device, run
 ```bash
 git clone https://github.com/angchester/DSA4262_2510_cookbooked.git
 ```
-If cloned successfully, you should see folder `DSA4262_2510_cookbooked` created.
+If cloned successfully, the folder `DSA4262_2510_cookbooked` will be created.
 
 **_Install Software/Packages_**
 1) Installing pip
@@ -64,13 +64,15 @@ Once all packages are installed, you are ready to run the model.
 
 Ensure that you are in the `DSA4262_2510_cookbooked` folder before running any commands.
 
-To run the prediction script, you can run main.py and input in the data in `.json.gz` or `.json` in the following format. (If you are using Windows, replace python3 with python)
+To run the prediction script, you can run `main.py` and input in the data in `.json.gz` or `.json` in the following format. (If you are using Windows, replace python3 with python)
 ```bash
 python3 main.py {data}.json.gz
 # or
 python3 main.py {data}.json
 ```
-Replace `{data}` with the name of the dataset file.
+Replace `{data}` with the filename only (e.g `testdata`)
+
+You **do not need to include the folder path** such as `/data/test.json.gz`. The script automatically searches for all files inside the `/data` directory. As such, ensure that all dataset files you wish to predict are placed inside `/data` folder.
 
 To test the model with a sample data
 ```bash
@@ -78,7 +80,7 @@ python3 main.py testdata.json.gz
 ```
 **Note** that our model is an ensemble of 5 bagged models, so the prediction script will run 5 inference rounds (one per bag) before averaging the results. This process may take some time to complete, depending on your hardware performance and the size of the data. Please allow the script to finish without interruption.
 
-Upon successful completion, the predictions will be saved as a `.csv` file inside the `/predictions` folder.
+Upon successful completion, the predictions will be saved as `/predictions/testdata_pred.csv`
 
 **_Predicting on SGNex data_**
 
@@ -87,6 +89,7 @@ To access the SGNex S3 bucket, install AWS CLI
 sudo apt install awscli
 ```
 You might be prompted to continue, just enter 'Y'
+
 A pop-up might appear in AWS instance, select Ok to continue.
 
 To download a specific dataset folder from SGNex, you can run
@@ -99,16 +102,18 @@ Replace `<FOLDER_NAME>` with the specific dataset folder name. The first path is
 
 **_Example of predicting SGNex data_**
 
-For example, if we wish to predict `SGNex_A549_directRNA_replicate5_run1`, we can run the following commands
+For example, if we wish to predict `SGNex_A549_directRNA_replicate5_run1`, run the following command
 ```bash
 aws s3 cp --no-sign-request \
 s3://sg-nex-data/data/processed_data/m6Anet/SGNex_A549_directRNA_replicate5_run1/data.json \
 data/SGNex_A549_directRNA_replicate5_run1.json
 ```
-'SGNex_A549_directRNA_replicate5_run1.json' should appear in `/data`. To run the prediction on this,
+This saves `SGNex_A549_directRNA_replicate5_run1.json` in `/data`. Run the following command to do prediction
 ```bash
 python3 main.py SGNex_A549_directRNA_replicate5_run1.json
 ```
+
+Upon successful completion, the predictions will be saved as `/predictions/SGNex_A549_directRNA_replicate5_run1_pred.csv`
 
 # Team Members
 1) ANG QI WEI CHESTER
