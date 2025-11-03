@@ -44,7 +44,7 @@ git clone https://github.com/angchester/DSA4262_2510_cookbooked.git
 ```
 If cloned successfully, the folder `DSA4262_2510_cookbooked` will be created. 
 
-Ensure that you are in the `DSA4262_2510_cookbooked` folder before running any commands.
+Ensure that you are in the `DSA4262_2510_cookbooked` folder before proceeding.
 ```bash
 cd DSA4262_2510_cookbooked
 ```
@@ -67,8 +67,6 @@ pip install -r requirements.txt
 Once all packages are installed, you are ready to run the model.
 
 # Running the model
-
-Ensure that you are in the `DSA4262_2510_cookbooked` folder before running any commands.
 
 To run the prediction script, you can run `main.py` and input in the data in `.json.gz` or `.json` in the following format. (If you are using Windows, replace python3 with python)
 ```bash
