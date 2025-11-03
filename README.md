@@ -24,7 +24,7 @@ DSA4262_2510_cookbooked/
     ├── data_utils.py              # Data loading & pre-processing
     ├── model_arch.py              # Model + FocalLoss 
     ├── prediction.py              # To run predictions
-    └── train_model                # To model training script
+    └── train_model                # Training script for final model
 ```
 
 # Setting up
@@ -42,7 +42,12 @@ To clone the repository to your device, run
 ```bash
 git clone https://github.com/angchester/DSA4262_2510_cookbooked.git
 ```
-If cloned successfully, the folder `DSA4262_2510_cookbooked` will be created.
+If cloned successfully, the folder `DSA4262_2510_cookbooked` will be created. 
+
+Ensure that you are in the `DSA4262_2510_cookbooked` folder before running any commands.
+```bash
+cd DSA4262_2510_cookbooked
+```
 
 **_Install Software/Packages_**
 1) Installing pip
