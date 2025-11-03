@@ -22,5 +22,5 @@ joblib==1.4.2
 # src.data_utils
 # src.model_arch
 # src.train_model
-# src.predict.task1_predict
-# src.predict.task2_predict
+# src.prediction
+

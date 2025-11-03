@@ -23,7 +23,8 @@ DSA4262_2510_cookbooked/
 └── src/
     ├── data_utils.py              # Data loading & pre-processing
     ├── model_arch.py              # Model + FocalLoss 
-    └── prediction.py              # To run predictions
+    ├── prediction.py              # To run predictions
+    └── train_model                # To model training script
 ```
 
 # Setting up
