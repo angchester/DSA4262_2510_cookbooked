@@ -66,9 +66,9 @@ Ensure that you are in the `DSA4262_2510_cookbooked` folder before running any c
 
 To run the prediction script, you can run `main.py` and input in the data in `.json.gz` or `.json` in the following format. (If you are using Windows, replace python3 with python)
 ```bash
-python3 main.py {data}.json.gz
+python3 main.py predict {data}.json.gz
 # or
-python3 main.py {data}.json
+python3 main.py predict {data}.json
 ```
 Replace `{data}` with the filename only (e.g `testdata`)
 
@@ -76,7 +76,7 @@ You **do not need to include the folder path** such as `/data/test.json.gz`. The
 
 To test the model with a sample data
 ```bash
-python3 main.py testdata.json.gz
+python3 main.py predict testdata.json.gz
 ```
 **Note** that our model is an ensemble of 5 bagged models, so the prediction script will run 5 inference rounds (one per bag) before averaging the results. This process may take some time to complete, depending on your hardware performance and the size of the data. Please allow the script to finish without interruption.
 
@@ -110,7 +110,7 @@ data/SGNex_A549_directRNA_replicate5_run1.json
 ```
 This saves `SGNex_A549_directRNA_replicate5_run1.json` in `/data`. Run the following command to do prediction
 ```bash
-python3 main.py SGNex_A549_directRNA_replicate5_run1.json
+python3 main.py predict SGNex_A549_directRNA_replicate5_run1.json
 ```
 
 Upon successful completion, the predictions will be saved as `/predictions/SGNex_A549_directRNA_replicate5_run1_pred.csv`
