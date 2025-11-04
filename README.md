@@ -10,8 +10,8 @@ DSA4262_2510_cookbooked/
 ├── main.py                        # Entry point
 ├── requirements.txt               # Dependencies
 │
-├── data/                          # Input datasets 
-│   └── testdata.json.gz           # Test data to try out
+├── data/                          # Input datasets (Sample test + SGNex data)
+│   └── testdata.json.gz           # Sample test data
 │        
 ├── models/                        # Trained bagged models (.pt)
 │   ├── bag1_finalmodel.pt
@@ -56,7 +56,7 @@ If you are using an AWS instance, run the following command to install pip and e
 ```bash
 sudo apt update && sudo apt upgrade -y && sudo apt install -y git python3 python3-pip python3-venv
 ```
-A pop-up might appear in AWS instance, select Ok to continue.
+If you are on AWS instance, a few pop-ups might appear. Select Ok to continue.
 
 2) Installing required packages
    
@@ -68,23 +68,36 @@ Once all packages are installed, you are ready to run the model.
 
 # Running the model
 
-To run the prediction script, you can run `main.py` and input in the data in `.json.gz` or `.json` in the following format. (If you are using Windows, replace python3 with python)
+1) Preparing Input data
+
+All dataset files must be placed inside the `/data` directory.
+For example, to test the model with the provided sample dataset, ensure the file is located at `/data/testdata.json.gz`
+
+2) Running Predictions
+
+Once your input data is in `/data`, you can run the prediction script using `main.py`.
+The script accepts data files in either `.json.gz` or `.json` format (If you are using Windows, replace python3 with python)
+
 ```bash
-python3 main.py predict {data}.json.gz
+python3 main.py predict <data_file>.json.gz
 # or
-python3 main.py predict {data}.json
+python3 main.py predict <data_file>.json
 ```
-Replace `{data}` with the filename only (e.g `testdata`)
 
-You **do not need to include the folder path** such as `/data/test.json.gz`. The script automatically searches for all files inside the `/data` directory. As such, ensure that all dataset files you wish to predict are placed inside `/data` folder.
+Replace `<data_file>` with the filename only (e.g `testdata`)
 
-To test the model with a sample data
+**Note**: You **do not need to include the folder path** such as `/data/testdata.json.gz`. The script automatically searches for all files inside the `/data` directory, so you only need to specify the filename (e.g `testdata.json.gz`)
+
+To test the model using the provided sample data
 ```bash
 python3 main.py predict testdata.json.gz
 ```
-**Note** that our model is an ensemble of 5 bagged models, so the prediction script will run 5 inference rounds (one per bag) before averaging the results. This process may take some time to complete, depending on your hardware performance and the size of the data. Please allow the script to finish without interruption.
 
-Upon successful completion, the predictions will be saved as `/predictions/testdata_pred.csv`
+**Note**: Our model is an ensemble of 5 bagged models, so the prediction script will run 5 separate inference rounds (one per bag) before averaging the results to produce the final prediction. This process may take some time to complete, depending on your hardware performance and the size of the data. Please allow the script to finish without interruption.
+
+3) Prediction Output location
+
+After a successful prediction run, the results will be saved automatically in `/predictions` folder as a `.csv` file. You may find the predicted sample data at `/predictions/testdata_pred.csv`
 
 **_Predicting on SGNex data_**
 
@@ -94,7 +107,7 @@ sudo apt install awscli
 ```
 You might be prompted to continue, just enter 'Y'
 
-A pop-up might appear in AWS instance, select Ok to continue.
+If you are on AWS instance, a few pop-ups might appear. Select Ok to continue.
 
 To download a specific dataset folder from SGNex, you can run
 ```bash
